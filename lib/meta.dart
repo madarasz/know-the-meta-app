@@ -34,53 +34,63 @@ class _MetaWidgetState extends State<MetaWidget> {
         }
     }
 
+    List<DropdownMenuItem> cardpoolToDropdown(List<Cardpool> cp) {
+        List<DropdownMenuItem> result = new List<DropdownMenuItem>();
+        cp.forEach((element) => result.add(
+            DropdownMenuItem(
+                value: element.title,
+                child: Text(element.title),
+            ),
+        ));
+        return result;
+    }
+
     @override
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-            title: FutureBuilder<List<Cardpool>>(
-                future: cardpools,
-                builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                        return Text(snapshot.data[0].title);
-                    } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                    }
+                title: FutureBuilder<List<Cardpool>>(
+                    future: cardpools,
+                    builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                            return DropdownButton(
+                                value: snapshot.data[0].title,
+                                isExpanded: true,
+                                icon: Icon(Icons.keyboard_arrow_down),
+                                items: cardpoolToDropdown(snapshot.data),
+                                onChanged: (value) {
+                                    setState(() {
+                                        // _value = value;
+                                    });
+                                },
+                                underline: Container(
+                                    height: 0,
+                                ),
+                                style: TextStyle(color: Colors.black),
+                                // iconEnabledColor: Colors.white,
+                            );
+                        } else if (snapshot.hasError) {
+                            return Text("${snapshot.error}");
+                        }
 
-                    // By default, show a loading spinner.
-                    return CircularProgressIndicator(
-                        backgroundColor: Colors.white,
-                    );
-                },
-            ),
-            actions: <Widget>[
-                IconButton(
-                    icon: Icon(Icons.keyboard_arrow_left),
-                    onPressed: () {
-                        
+                        // By default, show a loading spinner.
+                        return CircularProgressIndicator(
+                            backgroundColor: Colors.white,
+                        );
                     },
                 ),
-            ],
-            // bottom: TabBar(
-            //     isScrollable: false,
-            //     tabs: [
-            //         Tab(icon: Icon(Icons.directions_car)),
-            //         Tab(icon: Icon(Icons.directions_transit)),
-            //         Tab(icon: Icon(Icons.directions_bike)),
-            //     ]
-            // )
             ),
-            body: Container(
-                alignment: Alignment.center,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
+            // body: Container(
+            //     alignment: Alignment.center,
+            //     child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         mainAxisSize: MainAxisSize.max,
+            //         children: <Widget>[
                         
-                    ],
-                )
+            //         ],
+            //     )
                 
-            )
+            // )
         );   
     }
 
