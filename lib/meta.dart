@@ -11,7 +11,7 @@ class MetaWidget extends StatefulWidget {
 class _MetaWidgetState extends State<MetaWidget> {
 
     Future<List<Cardpool>> cardpools;
-    int _currentCardpoolIndex = 0;
+    String _currentCardpoolText = "";
 
     @override
     void initState() {
@@ -27,6 +27,7 @@ class _MetaWidgetState extends State<MetaWidget> {
             json.decode(response.body).forEach((element) => 
                 result.add(Cardpool.fromJson(element))
             );
+            _currentCardpoolText = result[0].title;
             print("loading cardpool success!");
             return result;
         } else {
@@ -54,20 +55,26 @@ class _MetaWidgetState extends State<MetaWidget> {
                     builder: (context, snapshot) {
                         if (snapshot.hasData) {
                             return DropdownButton(
-                                value: snapshot.data[0].title,
+                                value: null,
                                 isExpanded: true,
                                 icon: Icon(Icons.keyboard_arrow_down),
                                 items: cardpoolToDropdown(snapshot.data),
                                 onChanged: (value) {
                                     setState(() {
-                                        // _value = value;
+                                        _currentCardpoolText = value;
                                     });
                                 },
                                 underline: Container(
                                     height: 0,
                                 ),
                                 style: TextStyle(color: Colors.black),
-                                // iconEnabledColor: Colors.white,
+                                iconEnabledColor: Colors.white,
+                                hint: Text(
+                                    _currentCardpoolText,
+                                    style: TextStyle(
+                                    color: Colors.white,
+                                    ),
+                                ),
                             );
                         } else if (snapshot.hasError) {
                             return Text("${snapshot.error}");
