@@ -50,6 +50,7 @@ class _MetaWidgetState extends State<MetaWidget> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
+                backgroundColor: const Color(0xFF006687),
                 title: FutureBuilder<List<Cardpool>>(
                     future: cardpools,
                     builder: (context, snapshot) {
@@ -72,7 +73,8 @@ class _MetaWidgetState extends State<MetaWidget> {
                                 hint: Text(
                                     _currentCardpoolText,
                                     style: TextStyle(
-                                    color: Colors.white,
+                                        color: Colors.white,
+                                        fontSize: 24
                                     ),
                                 ),
                             );
@@ -87,17 +89,23 @@ class _MetaWidgetState extends State<MetaWidget> {
                     },
                 ),
             ),
-            // body: Container(
-            //     alignment: Alignment.center,
-            //     child: Column(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         mainAxisSize: MainAxisSize.max,
-            //         children: <Widget>[
-                        
-            //         ],
-            //     )
+            body: DefaultTabController (
+                length: 2,
+                child: Container(
+                    constraints: BoxConstraints(maxHeight: 40, minHeight: 40),
+                    color: const Color(0xFF3894b7),
+                    child: TabBar(
+                        indicatorColor: const Color(0xFF006687),
+                        indicatorWeight: 4,
+                        tabs: [
+                            Text('CORPORATION'),
+                            Text('RUNNER'),
+                        ],
+                ),
+                )
                 
-            // )
+            )
+            
         );   
     }
 

@@ -20,16 +20,20 @@ class _HomeState extends State<Home> {
         return Scaffold(
             body: _children[_currentIndex],
             bottomNavigationBar: BottomNavigationBar(
+                backgroundColor: const Color(0xFFbf360c),
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.white30,
                 onTap: onTabTapped,
                 currentIndex: _currentIndex,
                 items: [
                     BottomNavigationBarItem(
                         icon: new Icon(Icons.trending_up),
-                        title: new Text('Meta')
+                        title: new Text('Meta'),
                     ),
                     BottomNavigationBarItem(
                         icon: new Icon(Icons.bug_report),
-                        title: new Text('Cards')
+                        title: new Text('Cards'),
+                        backgroundColor: const Color(0xFFf9683a)
                     ),
                     BottomNavigationBarItem(
                         icon: new Icon(Icons.settings),
