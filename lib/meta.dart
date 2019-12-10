@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'data/cardpool.dart';
+import 'package:know_the_meta_app/redux/cardpool/cardpool.dart';
 
 class MetaWidget extends StatefulWidget {
     @override

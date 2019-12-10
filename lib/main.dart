@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:know_the_meta_app/redux/app/app_reducer.dart';
+import 'package:redux/redux.dart';
 import 'package:know_the_meta_app/home.dart';
+import 'package:know_the_meta_app/redux/app/app_state.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+    // Redux store
+    final Store<AppState> store = Store<AppState>(
+        appReducer, /* Function defined in the reducers file */
+        initialState: AppState.initial(),
+        // middleware: createStoreMiddleware(),
+    );
+
     // This widget is the root of the application.
     @override
     Widget build(BuildContext context) {
