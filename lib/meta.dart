@@ -91,21 +91,34 @@ class _MetaWidgetState extends State<MetaWidget> {
             ),
             body: DefaultTabController (
                 length: 2,
-                child: Container(
-                    constraints: BoxConstraints(maxHeight: 40, minHeight: 40),
-                    color: const Color(0xFF3894b7),
-                    child: TabBar(
-                        indicatorColor: const Color(0xFF006687),
-                        indicatorWeight: 4,
-                        tabs: [
-                            Text('CORPORATION'),
-                            Text('RUNNER'),
-                        ],
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                        Container(
+                            constraints: BoxConstraints(maxHeight: 40, minHeight: 40),
+                            color: const Color(0xFF3894b7),
+                            child: TabBar(
+                                indicatorColor: const Color(0xFF006687),
+                                indicatorWeight: 4,
+                                tabs: [
+                                    Text('CORPORATION'),
+                                    Text('RUNNER'),
+                                ],
+                            ),
+                        ),               
+                        Expanded(
+                            child:
+                                TabBarView(
+                                children: <Widget>[
+                                    Text('corp'),
+                                    Text('runner')
+                                ],
+                            )
+                        )  
+                    ]
                 ),
-                )
                 
-            )
-            
+            )            
         );   
     }
 
