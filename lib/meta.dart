@@ -107,17 +107,71 @@ class _MetaWidgetState extends State<MetaWidget> {
                             ),
                         ),               
                         Expanded(
-                            child:
-                                TabBarView(
+                            child: TabBarView(
                                 children: <Widget>[
-                                    Text('corp'),
-                                    Text('runner')
+                                    DefaultTabController(
+                                        length: 3,
+                                        child: Column(
+                                            children: <Widget>[
+                                                Container(
+                                                    constraints: BoxConstraints(maxHeight: 40, minHeight: 40),
+                                                    color: const Color(0xFF3894b7),
+                                                    child: TabBar(
+                                                        indicatorColor: const Color(0xFF006687),
+                                                        indicatorWeight: 4,
+                                                        tabs: [
+                                                            Text('IDENTITIES'),
+                                                            Text('DECKS'),
+                                                            Text('ICE')
+                                                        ],
+                                                    ),
+                                                ),      
+                                                Expanded(
+                                                    child: TabBarView(
+                                                        children: <Widget>[
+                                                            Text('corp IDs'),
+                                                            Text('corp decks'),
+                                                            Text('corp ice')
+                                                        ],
+                                                    )
+                                                )
+                                            ],
+                                        )
+                                    ),
+                                    DefaultTabController(
+                                        length: 3,
+                                        child: Column(
+                                            children: <Widget>[
+                                                Container(
+                                                    constraints: BoxConstraints(maxHeight: 40, minHeight: 40),
+                                                    color: const Color(0xFF3894b7),
+                                                    child: TabBar(
+                                                        indicatorColor: const Color(0xFF006687),
+                                                        indicatorWeight: 4,
+                                                        tabs: [
+                                                            Text('IDENTITIES'),
+                                                            Text('DECKS'),
+                                                            Text('BREAKERS')
+                                                        ],
+                                                    ),
+                                                ),
+                                                Expanded(
+                                                    child: TabBarView(
+                                                        children: <Widget>[
+                                                            Text('runnder IDs'),
+                                                            Text('runner decks'),
+                                                            Text('runner breakers')
+                                                        ],
+                                                    )
+                                                )      
+                                            ],
+                                        )
+                                    ),
                                 ],
                             )
                         )  
                     ]
                 ),
-                
             )            
         );   
     }
